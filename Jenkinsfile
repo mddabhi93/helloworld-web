@@ -5,7 +5,7 @@ pipeline {
             steps {
                 echo 'Hello world'
                 sh "docker build . -t mahesh/web:latest"
-                echo 'Build Successfull'
+                echo 'Build Successfully'
             }
         }
     }
