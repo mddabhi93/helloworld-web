@@ -14,8 +14,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557831573860.dkr.ecr.us-east-1.amazonaws.com
-                  docker build -t web-app .
+                  sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557831573860.dkr.ecr.us-east-1.amazonaws.com'
+                  sh 'docker build -t web-app .'
                   docker tag web-app:latest 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
                   docker push 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
                     }
