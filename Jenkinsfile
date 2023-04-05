@@ -19,7 +19,6 @@ pipeline {
                   docker tag web-app:latest 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
                   docker push 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
                     }
-                }
             }
         }
         stage('Build Docker Image') {
