@@ -14,9 +14,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                  docker.withRegistry('https://557831573860.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:aws-credentials') {
-                     app.push("${env.BUILD_NUMBER}")
-                     app.push("latest")
+                  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 557831573860.dkr.ecr.us-east-1.amazonaws.com
+                  docker build -t web-app .
+                  docker tag web-app:latest 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
+                  docker push 557831573860.dkr.ecr.us-east-1.amazonaws.com/web-app:latest
                     }
                 }
             }
